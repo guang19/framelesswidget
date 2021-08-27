@@ -23,8 +23,7 @@ FramelessWidget::DefaultTitleBar::DefaultTitleBar(QWidget *parent) : AbstractTit
 
     _icon = new QLabel(this);
     _icon->setFixedSize(_WINDOW_ICON_SIZE);
-    QPixmap pic(":/img/dog.jpg");
-    _icon->setPixmap(pic.scaled(_icon->size(),Qt::AspectRatioMode::KeepAspectRatioByExpanding,Qt::TransformationMode::SmoothTransformation));
+//    _icon->setPixmap(pic.scaled(_icon->size(),Qt::AspectRatioMode::KeepAspectRatioByExpanding,Qt::TransformationMode::SmoothTransformation));
     layout->addWidget(_icon,0,Qt::AlignmentFlag::AlignLeft | Qt::AlignmentFlag::AlignVCenter);
 
     _title = new QLabel("FramelessWidget",this);
