@@ -1,0 +1,7 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+<qresource>
+    <file>img/window-button.ttf</file>
+    <file>img/dog.jpg</file>
+</qresource>
+</RCC>

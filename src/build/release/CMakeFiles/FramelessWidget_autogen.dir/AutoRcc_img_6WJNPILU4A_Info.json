@@ -1,0 +1,23 @@
+{
+	"BUILD_DIR" : "/home/guang19/MyProject/framelesswidget/src/build/release/FramelessWidget_autogen",
+	"CMAKE_BINARY_DIR" : "/home/guang19/MyProject/framelesswidget/src/build/release",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/guang19/MyProject/framelesswidget/src/build/release",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/guang19/MyProject/framelesswidget/src",
+	"CMAKE_SOURCE_DIR" : "/home/guang19/MyProject/framelesswidget/src",
+	"INCLUDE_DIR" : "/home/guang19/MyProject/framelesswidget/src/build/release/FramelessWidget_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/guang19/MyProject/framelesswidget/src/resource/img/window-button.ttf",
+		"/home/guang19/MyProject/framelesswidget/src/resource/img/dog.jpg"
+	],
+	"LOCK_FILE" : "/home/guang19/MyProject/framelesswidget/src/build/release/CMakeFiles/FramelessWidget_autogen.dir/AutoRcc_img_6WJNPILU4A_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "img" ],
+	"OUTPUT_CHECKSUM" : "6WJNPILU4A",
+	"OUTPUT_NAME" : "qrc_img.cpp",
+	"RCC_EXECUTABLE" : "/usr/bin/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/guang19/MyProject/framelesswidget/src/build/release/CMakeFiles/FramelessWidget_autogen.dir/AutoRcc_img_6WJNPILU4A_Used.txt",
+	"SOURCE" : "/home/guang19/MyProject/framelesswidget/src/resource/img.qrc",
+	"VERBOSITY" : 0
+}

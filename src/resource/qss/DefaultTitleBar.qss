@@ -1,0 +1,28 @@
+#TitleBar
+{
+    background-color: #dee0e2;
+}
+
+QPushButton#MinimizeButton,
+QPushButton#MaximizeButton,
+QPushButton#CloseButton
+{
+    border-radius: 11px;
+}
+
+QPushButton#MinimizeButton:hover,
+QPushButton#MaximizeButton:hover,
+QPushButton#CloseButton:hover
+{
+    color: #ffffff;
+}
+
+QPushButton#MinimizeButton:hover,
+QPushButton#MaximizeButton:hover
+{
+    background-color: #000000;
+}
+QPushButton#CloseButton:hover
+{
+    background-color: #ff0000;
+}
