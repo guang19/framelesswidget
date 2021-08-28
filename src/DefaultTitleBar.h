@@ -5,6 +5,8 @@
 #ifndef DEFAULTTITLEBAR_H
 #define DEFAULTTITLEBAR_H
 
+#include <QFont>
+#include <QChar>
 
 #include "AbstractTitleBar.h"
 
@@ -35,6 +37,10 @@ namespace FramelessWidget
             void setWindowTitle(const QString& title) override;
             void setWindowTitleAlignCenter(bool centreAlign) override;
             void setButtonType(WindowButtonType windowButtonType) override;
+
+        private:
+            //创建标题栏按钮
+            QPushButton* createWindowButton(const QString& objName,const QFont& font , const QChar& fntIndex);
 
         protected:
             void resizeEvent(QResizeEvent *event) override;

@@ -3,8 +3,6 @@
 //
 
 #include <QHBoxLayout>
-#include <QFont>
-#include <QChar>
 #include <QDebug>
 #include "uihelper.h"
 #include "DefaultTitleBar.h"
@@ -32,28 +30,16 @@ FramelessWidget::DefaultTitleBar::DefaultTitleBar(QWidget *parent) : AbstractTit
     layout->addSpacing(15);
 
     QFont buttonFont = UIHelper::instance()->getIconFont(_WINDOW_BUTTON_ICONFONT);
-    _minimizeButton = new QPushButton(this);
-    _minimizeButton->setObjectName(_MINIMIZE_BUTTON_OBJECT_NAME);
-    _minimizeButton->setFlat(true);
-    _minimizeButton->setFont(buttonFont);
-    _minimizeButton->setText(QChar(_MINIMIZE_BUTTON_FONT_INDEX));
-    _minimizeButton->setFixedSize(_WINDOW_BUTTON_SIZE);
+    _minimizeButton = createWindowButton(_MINIMIZE_BUTTON_OBJECT_NAME,buttonFont,_MINIMIZE_BUTTON_FONT_INDEX);
     layout->addWidget(_minimizeButton,0,Qt::AlignmentFlag::AlignRight | Qt::AlignmentFlag::AlignVCenter);
     layout->addSpacing(3);
 
-    _maximizeButton = new QPushButton(this);
-    _maximizeButton->setObjectName(_MAXIMIZE_BUTTON_OBJECT_NAME);
-    _maximizeButton->setFont(buttonFont);
-    _maximizeButton->setText(QChar(_MAXIMIZE_BUTTON_FONT_INDEX));
-    _maximizeButton->setFixedSize(_WINDOW_BUTTON_SIZE);
+
+    _maximizeButton = createWindowButton(_MAXIMIZE_BUTTON_OBJECT_NAME,buttonFont,_MAXIMIZE_BUTTON_FONT_INDEX);
     layout->addWidget(_maximizeButton,0,Qt::AlignmentFlag::AlignRight | Qt::AlignmentFlag::AlignVCenter);
     layout->addSpacing(3);
 
-    _closeButton = new QPushButton(this);
-    _closeButton->setObjectName(_CLOSE_BUTTON_OBJECT_NAME);
-    _closeButton->setFont(buttonFont);
-    _closeButton->setText(QChar(_CLOSE_BUTTON_FONT_INDEX));
-    _closeButton->setFixedSize(_WINDOW_BUTTON_SIZE);
+    _closeButton = createWindowButton(_CLOSE_BUTTON_OBJECT_NAME,buttonFont,_CLOSE_BUTTON_FONT_INDEX);
     layout->addWidget(_closeButton,0,Qt::AlignmentFlag::AlignRight | Qt::AlignmentFlag::AlignVCenter);
 
     connect(_minimizeButton,&QPushButton::clicked,this,&AbstractTitleBar::onMinimizeButtonClick);
@@ -109,11 +95,7 @@ void FramelessWidget::DefaultTitleBar::setButtonType(FramelessWidget::WindowButt
             {
                 //添加最小化按钮以及右边的spacing
                 int index = lyt->indexOf(_maximizeButton);
-                _minimizeButton = new QPushButton(this);
-                _minimizeButton->setObjectName(_MINIMIZE_BUTTON_OBJECT_NAME);
-                _minimizeButton->setFont(UIHelper::instance()->getIconFont(_WINDOW_BUTTON_ICONFONT));
-                _minimizeButton->setText(QChar(_MINIMIZE_BUTTON_FONT_INDEX));
-                _minimizeButton->setFixedSize(_WINDOW_BUTTON_SIZE);
+                _minimizeButton = createWindowButton(_MINIMIZE_BUTTON_OBJECT_NAME,UIHelper::instance()->getIconFont(_WINDOW_BUTTON_ICONFONT),_MINIMIZE_BUTTON_FONT_INDEX);
                 connect(_minimizeButton,&QPushButton::clicked,this,&AbstractTitleBar::onMinimizeButtonClick);
                 lyt->insertWidget(index ,_minimizeButton,0,Qt::AlignmentFlag::AlignRight | Qt::AlignmentFlag::AlignVCenter);
                 lyt->insertSpacing(index + 1,3);
@@ -122,11 +104,7 @@ void FramelessWidget::DefaultTitleBar::setButtonType(FramelessWidget::WindowButt
             {
                 //添加最大化按钮
                 int index = lyt->indexOf(_closeButton);
-                _maximizeButton = new QPushButton(this);
-                _maximizeButton->setObjectName(_MAXIMIZE_BUTTON_OBJECT_NAME);
-                _maximizeButton->setFont(UIHelper::instance()->getIconFont(_WINDOW_BUTTON_ICONFONT));
-                _maximizeButton->setText(QChar(_MAXIMIZE_BUTTON_FONT_INDEX));
-                _maximizeButton->setFixedSize(_WINDOW_BUTTON_SIZE);
+                _maximizeButton = createWindowButton(_MAXIMIZE_BUTTON_OBJECT_NAME,UIHelper::instance()->getIconFont(_WINDOW_BUTTON_ICONFONT),_MAXIMIZE_BUTTON_FONT_INDEX);
                 connect(_maximizeButton,&QPushButton::clicked,this,&AbstractTitleBar::onMaximizeButtonClick);
                 lyt->insertWidget(index,_maximizeButton,0,Qt::AlignmentFlag::AlignRight | Qt::AlignmentFlag::AlignVCenter);
                 lyt->insertSpacing(index + 1,3);
@@ -153,11 +131,7 @@ void FramelessWidget::DefaultTitleBar::setButtonType(FramelessWidget::WindowButt
                 _maximizeButton->setParent(nullptr);
                 delete _maximizeButton;
                 _maximizeButton = nullptr;
-                _minimizeButton = new QPushButton(this);
-                _minimizeButton->setObjectName(_MINIMIZE_BUTTON_OBJECT_NAME);
-                _minimizeButton->setFont(UIHelper::instance()->getIconFont(_WINDOW_BUTTON_ICONFONT));
-                _minimizeButton->setText(QChar(_MINIMIZE_BUTTON_FONT_INDEX));
-                _minimizeButton->setFixedSize(_WINDOW_BUTTON_SIZE);
+                _minimizeButton = createWindowButton(_MINIMIZE_BUTTON_OBJECT_NAME,UIHelper::instance()->getIconFont(_WINDOW_BUTTON_ICONFONT),_MINIMIZE_BUTTON_FONT_INDEX);
                 connect(_minimizeButton,&QPushButton::clicked,this,&AbstractTitleBar::onMinimizeButtonClick);
                 lyt->insertWidget(index,_minimizeButton,0,Qt::AlignmentFlag::AlignRight | Qt::AlignmentFlag::AlignVCenter);
             }
@@ -183,11 +157,7 @@ void FramelessWidget::DefaultTitleBar::setButtonType(FramelessWidget::WindowButt
                 _minimizeButton->setParent(nullptr);
                 delete _minimizeButton;
                 _minimizeButton = nullptr;
-                _maximizeButton = new QPushButton(this);
-                _maximizeButton->setObjectName(_MAXIMIZE_BUTTON_OBJECT_NAME);
-                _maximizeButton->setFont(UIHelper::instance()->getIconFont(_WINDOW_BUTTON_ICONFONT));
-                _maximizeButton->setText(QChar(_MAXIMIZE_BUTTON_FONT_INDEX));
-                _maximizeButton->setFixedSize(_WINDOW_BUTTON_SIZE);
+                _maximizeButton = createWindowButton(_MAXIMIZE_BUTTON_OBJECT_NAME,UIHelper::instance()->getIconFont(_WINDOW_BUTTON_ICONFONT),_MAXIMIZE_BUTTON_FONT_INDEX);
                 connect(_maximizeButton,&QPushButton::clicked,this,&AbstractTitleBar::onMaximizeButtonClick);
                 lyt->insertWidget(index,_maximizeButton,0,Qt::AlignmentFlag::AlignRight | Qt::AlignmentFlag::AlignVCenter);
             }
@@ -213,4 +183,16 @@ void FramelessWidget::DefaultTitleBar::resizeEvent(QResizeEvent *event)
         }
     }
     QWidget::resizeEvent(event);
+}
+
+QPushButton *
+FramelessWidget::DefaultTitleBar::createWindowButton(const QString &objName, const QFont &font, const QChar &fntIndex)
+{
+    QPushButton* button = new QPushButton(this);
+    button->setObjectName(objName);
+    button->setFlat(true);
+    button->setFont(font);
+    button->setText(fntIndex);
+    button->setFixedSize(_WINDOW_BUTTON_SIZE);
+    return button;
 }
