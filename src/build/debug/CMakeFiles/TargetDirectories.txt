@@ -1,4 +1,0 @@
-/home/guang19/MyProject/framelesswidget/src/build/debug/CMakeFiles/rebuild_cache.dir
-/home/guang19/MyProject/framelesswidget/src/build/debug/CMakeFiles/edit_cache.dir
-/home/guang19/MyProject/framelesswidget/src/build/debug/CMakeFiles/FramelessWidget.dir
-/home/guang19/MyProject/framelesswidget/src/build/debug/CMakeFiles/FramelessWidget_autogen.dir

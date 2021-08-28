@@ -1,1 +1,0 @@
-/usr/bin/g++ -g CMakeFiles/sample.dir/sample_autogen/mocs_compilation.cpp.o CMakeFiles/sample.dir/main.cpp.o -o sample   -L/home/guang19/MyProject/framelesswidget/sample/../src/build/debug  -Wl,-rpath,/home/guang19/MyProject/framelesswidget/sample/../src/build/debug /usr/lib/libQt5Widgets.so.5.15.2 -lFramelessWidget /usr/lib/libQt5Gui.so.5.15.2 /usr/lib/libQt5Core.so.5.15.2 

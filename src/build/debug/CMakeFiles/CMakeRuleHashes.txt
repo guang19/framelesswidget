@@ -1,4 +1,0 @@
-# Hashes of file build rules.
-8aadf659af8407786efee4e5e27b5115 CMakeFiles/FramelessWidget_autogen
-3f0e356b13b1fcdbac17263511da9718 FramelessWidget_autogen/6WJNPILU4A/qrc_img.cpp
-b5817fa07100ecb1c9e66c6926f52166 FramelessWidget_autogen/6WJNPILU4A/qrc_qss.cpp

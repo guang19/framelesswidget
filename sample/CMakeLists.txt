@@ -8,6 +8,12 @@ IF(NOT CMAKE_PREFIX_PATH)
             "(-DCMAKE_PREFIX_PATH=\"path/to/Qt/lib/cmake\" or -DCMAKE_PREFIX_PATH=/usr/include/{host}/qt{version}/ on Ubuntu)")
 ENDIF()
 
+
+SET(CMAKE_BUILD_TYPE DEBUG)
+#可执行文件输出目录
+SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_CURRENT_SOURCE_DIR}/build/debug/bin)
+SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_CURRENT_SOURCE_DIR}build/release/bin)
+
 SET(CMAKE_AUTOMOC ON)
 SET(CMAKE_AUTORCC ON)
 #不需要UI
@@ -17,7 +23,8 @@ SET(QT_VERSION 5)
 SET(REQUIRED_LIBS Core Gui Widgets)
 SET(REQUIRED_LIBS_QUALIFIED Qt${QT_VERSION}::Core Qt${QT_VERSION}::Gui Qt${QT_VERSION}::Widgets)
 
-LINK_DIRECTORIES(../src/build/debug)
+#动态库目录
+LINK_DIRECTORIES(../src/build/debug/shared)
 
 ADD_EXECUTABLE(${PROJECT_NAME} main.cpp)
 
