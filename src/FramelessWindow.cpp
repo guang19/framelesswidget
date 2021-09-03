@@ -39,15 +39,34 @@ FramelessWidget::FramelessWindow::FramelessWindow(QWidget *parent) : FramelessWi
     _centreWidget = new QWidget(_mainArea);
     mainLyt->addWidget(_centreWidget,1,0,Qt::AlignmentFlag::AlignBottom);
 
-    //初始化信号槽
+    initConnectionWithTitleBar(_titleBar);
+    resize(300,300);
+}
+
+void FramelessWidget::FramelessWindow::initConnectionWithTitleBar(AbstractTitleBar *titleBar)
+{
+    connect(this,&FramelessWindow::setTitleBarHeight,_titleBar,&AbstractTitleBar::setTitleBarHeight);
+    connect(this,&FramelessWindow::setTitleBarBGColor,_titleBar,&AbstractTitleBar::setTitleBarBGColor);
     connect(this,&FramelessWindow::setWindowIcon,_titleBar,&AbstractTitleBar::setWindowIcon);
     connect(this,&FramelessWindow::setWindowTitle,_titleBar,&AbstractTitleBar::setWindowTitle);
     connect(this,&FramelessWindow::setWindowTitleAlignCenter,_titleBar,&AbstractTitleBar::setWindowTitleAlignCenter);
     connect(this,&FramelessWindow::setButtonType,_titleBar,&AbstractTitleBar::setButtonType);
-
     connect(_titleBar,&AbstractTitleBar::onMinimizeButtonClicked,this,&FramelessWindow::onMinimizeButtonClick);
     connect(_titleBar,&AbstractTitleBar::onMaximizeButtonClicked,this,&FramelessWindow::onMaximizeButtonClick);
     connect(_titleBar,&AbstractTitleBar::onCloseButtonClicked,this,&FramelessWindow::onCloseButtonClick);
+}
+
+void FramelessWidget::FramelessWindow::destroyConnectionWithTitleBar(AbstractTitleBar *titleBar)
+{
+    disconnect(this,&FramelessWindow::setTitleBarHeight,_titleBar,&AbstractTitleBar::setTitleBarHeight);
+    disconnect(this,&FramelessWindow::setTitleBarBGColor,_titleBar,&AbstractTitleBar::setTitleBarBGColor);
+    disconnect(this,&FramelessWindow::setWindowIcon,_titleBar,&AbstractTitleBar::setWindowIcon);
+    disconnect(this,&FramelessWindow::setWindowTitle,_titleBar,&AbstractTitleBar::setWindowTitle);
+    disconnect(this,&FramelessWindow::setWindowTitleAlignCenter,_titleBar,&AbstractTitleBar::setWindowTitleAlignCenter);
+    disconnect(this,&FramelessWindow::setButtonType,_titleBar,&AbstractTitleBar::setButtonType);
+    disconnect(_titleBar,&AbstractTitleBar::onMinimizeButtonClicked,this,&FramelessWindow::onMinimizeButtonClick);
+    disconnect(_titleBar,&AbstractTitleBar::onMaximizeButtonClicked,this,&FramelessWindow::onMaximizeButtonClick);
+    disconnect(_titleBar,&AbstractTitleBar::onCloseButtonClicked,this,&FramelessWindow::onCloseButtonClick);
 }
 
 void FramelessWidget::FramelessWindow::setTitleBar(AbstractTitleBar *titleBar)
@@ -55,27 +74,13 @@ void FramelessWidget::FramelessWindow::setTitleBar(AbstractTitleBar *titleBar)
     QGridLayout* lyt = dynamic_cast<QGridLayout*>(_mainArea->layout());
     if (_titleBar != nullptr)
     {
-        disconnect(this,&FramelessWindow::setWindowIcon,_titleBar,&AbstractTitleBar::setWindowIcon);
-        disconnect(this,&FramelessWindow::setWindowTitle,_titleBar,&AbstractTitleBar::setWindowTitle);
-        disconnect(this,&FramelessWindow::setWindowTitleAlignCenter,_titleBar,&AbstractTitleBar::setWindowTitleAlignCenter);
-        disconnect(this,&FramelessWindow::setButtonType,_titleBar,&AbstractTitleBar::setButtonType);
-
-        disconnect(_titleBar,&AbstractTitleBar::onMinimizeButtonClicked,this,&FramelessWindow::onMinimizeButtonClick);
-        disconnect(_titleBar,&AbstractTitleBar::onMaximizeButtonClicked,this,&FramelessWindow::onMaximizeButtonClick);
-        disconnect(_titleBar,&AbstractTitleBar::onCloseButtonClicked,this,&FramelessWindow::onCloseButtonClick);
+        destroyConnectionWithTitleBar(_titleBar);
         lyt->removeWidget(_titleBar);
         _titleBar->setParent(nullptr);
         delete _titleBar;
     }
     _titleBar = titleBar;
-    connect(this,&FramelessWindow::setWindowIcon,_titleBar,&AbstractTitleBar::setWindowIcon);
-    connect(this,&FramelessWindow::setWindowTitle,_titleBar,&AbstractTitleBar::setWindowTitle);
-    connect(this,&FramelessWindow::setWindowTitleAlignCenter,_titleBar,&AbstractTitleBar::setWindowTitleAlignCenter);
-    connect(this,&FramelessWindow::setButtonType,_titleBar,&AbstractTitleBar::setButtonType);
-
-    connect(_titleBar,&AbstractTitleBar::onMinimizeButtonClicked,this,&FramelessWindow::onMinimizeButtonClick);
-    connect(_titleBar,&AbstractTitleBar::onMaximizeButtonClicked,this,&FramelessWindow::onMaximizeButtonClick);
-    connect(_titleBar,&AbstractTitleBar::onCloseButtonClicked,this,&FramelessWindow::onCloseButtonClick);
+    initConnectionWithTitleBar(titleBar);
     _titleBar->setParent(_mainArea);
     lyt->addWidget(_titleBar,0,0,Qt::AlignmentFlag::AlignTop);
 }

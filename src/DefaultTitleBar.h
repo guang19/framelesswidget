@@ -14,6 +14,7 @@ namespace FramelessWidget
 {
 #define _TITLEBAR_OBJECT_NAME "TitleBar"
 #define _TITLEBAR_HEIGHT 32
+#define _DEFAULT_TITLEBAR_BGCOLOR qRgb(222,224,226)
 #define _WINDOW_ICON_SIZE QSize(28,28)
 #define _WINDOW_BUTTON_ICONFONT ":/img/window-button.ttf"
 #define _MINIMIZE_BUTTON_OBJECT_NAME "MinimizeButton"
@@ -33,6 +34,8 @@ namespace FramelessWidget
             ~DefaultTitleBar() = default;
 
         public slots:
+            void setTitleBarHeight(int height) override;
+            void setTitleBarBGColor(QRgb rgba) override;
             void setWindowIcon(const QIcon &icon) override;
             void setWindowTitle(const QString& title) override;
             void setWindowTitleAlignCenter(bool centreAlign) override;

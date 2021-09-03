@@ -49,6 +49,31 @@ FramelessWidget::DefaultTitleBar::DefaultTitleBar(QWidget *parent) : AbstractTit
     setAutoFillBackground(true);
     setAttribute(Qt::WidgetAttribute::WA_StyledBackground);
     UIHelper::instance()->setStyleSheet(this,":/qss/DefaultTitleBar.qss");
+    setTitleBarBGColor(_DEFAULT_TITLEBAR_BGCOLOR);
+}
+
+void FramelessWidget::DefaultTitleBar::setTitleBarHeight(int height)
+{
+    setFixedHeight(height);
+}
+
+void FramelessWidget::DefaultTitleBar::setTitleBarBGColor(QRgb rgba)
+{
+    QString bgc = QString("\n#") + _TITLEBAR_OBJECT_NAME +
+    "{background-color:rgba("
+    + QString::number(qRed(rgba)) + ',' + QString::number(qGreen(rgba)) + ',' + QString::number(qBlue(rgba)) + ',' +
+    QString::number(qAlpha(rgba))+ ");}\n";
+    //根据正则替换掉原来的#TitleBar背景颜色
+    QRegExp bgc_regex("#TitleBar\\{background-color:rgba\\((25[0-5]|2[0-4][0-9]|[0-1]?[0-9]?[0-9]),(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]?[0-9]),(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]?[0-9]),(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]?[0-9])(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]?[0-9])\\);\\}");
+    QString qss = styleSheet();
+    if (bgc_regex.indexIn(qss) >= 0)
+    {
+        setStyleSheet(styleSheet().replace(bgc_regex,bgc));
+    }
+    else
+    {
+        setStyleSheet(qss.append(bgc));
+    }
 }
 
 void FramelessWidget::DefaultTitleBar::setWindowTitle(const QString &title)
@@ -63,22 +88,17 @@ void FramelessWidget::DefaultTitleBar::setWindowIcon(const QIcon &icon)
 
 void FramelessWidget::DefaultTitleBar::setWindowTitleAlignCenter(bool centreAlign)
 {
-    if (centreAlign)
+    if (centreAlign && !_titleCentreAlign)
     {
-        if (!_titleCentreAlign)
-        {
-            QHBoxLayout* lyt = dynamic_cast<QHBoxLayout*>(layout());
-            lyt->setAlignment(_title,Qt::AlignmentFlag::AlignCenter);
-        }
+        QHBoxLayout* lyt = dynamic_cast<QHBoxLayout*>(layout());
+        lyt->setAlignment(_title,Qt::AlignmentFlag::AlignCenter);
     }
-    else
+    else if (!centreAlign && _titleCentreAlign)
     {
-        if (_titleCentreAlign)
-        {
-            QHBoxLayout* lyt = dynamic_cast<QHBoxLayout*>(layout());
-            lyt->setAlignment(_title,Qt::AlignmentFlag::AlignLeft | Qt::AlignVCenter);
-        }
+        QHBoxLayout* lyt = dynamic_cast<QHBoxLayout*>(layout());
+        lyt->setAlignment(_title,Qt::AlignmentFlag::AlignLeft | Qt::AlignVCenter);
     }
+    _titleCentreAlign = centreAlign;
 }
 
 void FramelessWidget::DefaultTitleBar::setButtonType(FramelessWidget::WindowButtonType windowButtonType)

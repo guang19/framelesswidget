@@ -28,6 +28,11 @@ namespace FramelessWidget
             ~AbstractTitleBar() = default;
 
         public slots:
+            //设置标题栏高度
+            virtual void setTitleBarHeight(int height) = 0;
+            //设置标题栏背景颜色
+            virtual void setTitleBarBGColor(QRgb rgba) = 0;
+            //设置背景标题栏背景颜色
             //设置窗口Icon
             virtual void setWindowIcon(const QIcon &icon) = 0;
             //设置窗口标题
@@ -36,6 +41,7 @@ namespace FramelessWidget
             virtual void setWindowTitleAlignCenter(bool centreAlign) = 0;
             //设置窗口按钮类型
             virtual void setButtonType(WindowButtonType windowButtonType) = 0;
+
 
             //窗口事件
             void onMinimizeButtonClick();
@@ -52,7 +58,7 @@ namespace FramelessWidget
             void onCloseButtonClicked();
 
         protected:
-            //title是否需要居中对齐，默认居中
+            //title是否需要居中对齐
             bool _titleCentreAlign;
             QLabel* _title;
             QLabel* _icon;

@@ -1,7 +1,9 @@
-#TitleBar
-{
-    background-color: #dee0e2;
-}
+/*#TitleBar*/
+/*{*/
+    /*background-color: #dee0e2;*/
+    /*background-color: transparent;*/
+    /*background-color: rgba(0,0,0,0);*/
+/*}*/
 
 QPushButton#MinimizeButton,
 QPushButton#MaximizeButton,

@@ -18,6 +18,10 @@ namespace FramelessWidget
             explicit FramelessWindow(QWidget*  = nullptr);
             ~FramelessWindow() = default;
 
+        private:
+            void initConnectionWithTitleBar(AbstractTitleBar* titleBar);
+            void destroyConnectionWithTitleBar(AbstractTitleBar* titleBar);
+
         public:
             void setTitleBar(AbstractTitleBar* titleBar);
 
@@ -28,6 +32,8 @@ namespace FramelessWidget
             AbstractTitleBar* titleBar() const;
 
         signals:
+            void setTitleBarHeight(int height);
+            void setTitleBarBGColor(QRgb rgba);
             void setWindowTitle(const QString& title);
             void setWindowIcon(const QIcon &icon);
             void setWindowTitleAlignCenter(bool centreAlign = true);
