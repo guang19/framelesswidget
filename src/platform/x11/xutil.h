@@ -31,7 +31,6 @@ class QRect;
 
 namespace XUtils
 {
-
     enum class CornerEdge
     {
             kInvalid = 0,

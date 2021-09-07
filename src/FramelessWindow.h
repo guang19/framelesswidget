@@ -24,12 +24,9 @@ namespace FramelessWidget
 
         public:
             void setTitleBar(AbstractTitleBar* titleBar);
-
-            void setCentreWidget(QWidget* centreWidget);
-
-            QWidget* centreWidget() const;
-
             AbstractTitleBar* titleBar() const;
+            void setCentreWidget(QWidget* centreWidget);
+            QWidget* centreWidget() const;
 
         signals:
             void setTitleBarHeight(int height);

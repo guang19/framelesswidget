@@ -18,13 +18,10 @@
 #include "xutil.h"
 
 #ifdef Q_OS_LINUX
-
 #include <QDebug>
 #include <QTimer>
 #include <QWidget>
-
 #include <QX11Info>
-
 #include <X11/Xatom.h>
 #include <X11/Xlib.h>
 #include <X11/extensions/shape.h>

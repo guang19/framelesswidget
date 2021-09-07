@@ -7,11 +7,12 @@
 
 #include <QWidget>
 #include <QtGlobal>
+#include <QPoint>
 #ifdef Q_OS_LINUX
-#include "xutil.h"
+#include "platform/x11/xutil.h"
 #endif
 #ifdef Q_OS_WIN
-#include <QPoint>
+#include "platform/windows/winutil.h"
 #endif
 
 
@@ -44,10 +45,6 @@ namespace FramelessWidget
 #ifdef Q_OS_LINUX
             //resize方向
             XUtils::CornerEdge _resizingCornerEdge;
-#endif
-#ifdef Q_OS_WIN
-            //window下需要记录鼠标按下的位置
-            QPoint _pressPos;
 #endif
             //当前鼠标是否按下
             bool _isPress;

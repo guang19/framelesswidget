@@ -42,20 +42,19 @@ namespace FramelessWidget
             //设置窗口按钮类型
             virtual void setButtonType(WindowButtonType windowButtonType) = 0;
 
-
             //窗口事件
             void onMinimizeButtonClick();
             void onMaximizeButtonClick();
             void onCloseButtonClick();
-
-        protected:
-            void mouseDoubleClickEvent(QMouseEvent *event) override;
 
         public:
             signals:
             void onMinimizeButtonClicked();
             void onMaximizeButtonClicked();
             void onCloseButtonClicked();
+
+        protected:
+            void mouseDoubleClickEvent(QMouseEvent *event) override;
 
         protected:
             //title是否需要居中对齐

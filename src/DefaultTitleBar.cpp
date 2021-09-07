@@ -190,7 +190,7 @@ void FramelessWidget::DefaultTitleBar::resizeEvent(QResizeEvent *event)
 {
     //根据大小变化修改最大化按钮icon
     if (_windowButtonType == WindowButtonType::MinimizeMaximizeButton ||
-    _windowButtonType == WindowButtonType::MaximizeButton)
+        _windowButtonType == WindowButtonType::MaximizeButton)
     {
         //修改最大化按钮icon为还原按钮icon
         if (window()->windowState() == Qt::WindowState::WindowMaximized)

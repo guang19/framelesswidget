@@ -41,12 +41,13 @@ namespace FramelessWidget
             void setWindowTitleAlignCenter(bool centreAlign) override;
             void setButtonType(WindowButtonType windowButtonType) override;
 
+        public:
+        protected:
+            void resizeEvent(QResizeEvent *event) override;
+
         private:
             //创建标题栏按钮
             QPushButton* createWindowButton(const QString& objName,const QFont& font , const QChar& fntIndex);
-
-        protected:
-            void resizeEvent(QResizeEvent *event) override;
     };
 
 }

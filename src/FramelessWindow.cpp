@@ -20,22 +20,22 @@ FramelessWidget::FramelessWindow::FramelessWindow(QWidget *parent) : FramelessWi
     installEventFilter(_mainArea);
     QGridLayout* lyt = dynamic_cast<QGridLayout*>(layout());
     lyt->addWidget(_mainArea,0,0);
-
+#ifdef Q_OS_LINUX
     //设置阴影
     QGraphicsDropShadowEffect* dropShadowEffect = new QGraphicsDropShadowEffect(this);
     dropShadowEffect->setColor(QColor("#555555"));
     dropShadowEffect->setOffset(0,0);
     dropShadowEffect->setBlurRadius(20);
     _mainArea->setGraphicsEffect(dropShadowEffect);
-
+#endif
     QGridLayout* mainLyt = new QGridLayout(_mainArea);
     mainLyt->setSpacing(0);
     mainLyt->setContentsMargins(0,0,0,0);
     _mainArea->setLayout(mainLyt);
 
+    //添加标题栏和客户区
     _titleBar = new DefaultTitleBar(_mainArea);
     mainLyt->addWidget(_titleBar,0,0,Qt::AlignmentFlag::AlignTop);
-
     _centreWidget = new QWidget(_mainArea);
     mainLyt->addWidget(_centreWidget,1,0,Qt::AlignmentFlag::AlignBottom);
 
@@ -80,7 +80,7 @@ void FramelessWidget::FramelessWindow::setTitleBar(AbstractTitleBar *titleBar)
         delete _titleBar;
     }
     _titleBar = titleBar;
-    initConnectionWithTitleBar(titleBar);
+    initConnectionWithTitleBar(_titleBar);
     _titleBar->setParent(_mainArea);
     lyt->addWidget(_titleBar,0,0,Qt::AlignmentFlag::AlignTop);
 }
