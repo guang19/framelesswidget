@@ -10,7 +10,7 @@
 #include <QLabel>
 #include <QPushButton>
 
-namespace FramelessWidget
+namespace FW
 {
     //窗口按钮类型（无论何种类型都会伴随close按钮）
     enum WindowButtonType

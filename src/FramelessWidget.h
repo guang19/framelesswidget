@@ -11,12 +11,9 @@
 #ifdef Q_OS_LINUX
 #include "platform/x11/xutil.h"
 #endif
-#ifdef Q_OS_WIN
-#include "platform/windows/winutil.h"
-#endif
 
 
-namespace FramelessWidget
+namespace FW
 {
     //窗口缩放resize时的边框范围
     #define _RESIZE_HANDLE_SIZE 10
@@ -39,7 +36,6 @@ namespace FramelessWidget
             void mouseReleaseEvent(QMouseEvent *event) override;
             void mouseMoveEvent(QMouseEvent *event) override;
             void resizeEvent(QResizeEvent *event) override;
-            bool nativeEvent(const QByteArray &eventType, void *message, long *result) override;
 
         private:
 #ifdef Q_OS_LINUX

@@ -5,7 +5,7 @@
 
 #include "AbstractTitleBar.h"
 
-FramelessWidget::AbstractTitleBar::AbstractTitleBar(QWidget *parent):
+FW::AbstractTitleBar::AbstractTitleBar(QWidget *parent):
 QWidget(parent)
 {
     setAttribute(Qt::WidgetAttribute::WA_DeleteOnClose);
@@ -13,22 +13,22 @@ QWidget(parent)
     installEventFilter(this);
 }
 
-void FramelessWidget::AbstractTitleBar::onMinimizeButtonClick()
+void FW::AbstractTitleBar::onMinimizeButtonClick()
 {
     emit onMinimizeButtonClicked();
 }
 
-void FramelessWidget::AbstractTitleBar::onMaximizeButtonClick()
+void FW::AbstractTitleBar::onMaximizeButtonClick()
 {
     emit onMaximizeButtonClicked();
 }
 
-void FramelessWidget::AbstractTitleBar::onCloseButtonClick()
+void FW::AbstractTitleBar::onCloseButtonClick()
 {
     emit onCloseButtonClicked();
 }
 
-void FramelessWidget::AbstractTitleBar::mouseDoubleClickEvent(QMouseEvent *event)
+void FW::AbstractTitleBar::mouseDoubleClickEvent(QMouseEvent *event)
 {
     emit onMaximizeButtonClicked();
 }

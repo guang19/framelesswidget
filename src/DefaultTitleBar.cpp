@@ -7,7 +7,7 @@
 #include "uihelper.h"
 #include "DefaultTitleBar.h"
 
-FramelessWidget::DefaultTitleBar::DefaultTitleBar(QWidget *parent) : AbstractTitleBar(parent)
+FW::DefaultTitleBar::DefaultTitleBar(QWidget *parent) : AbstractTitleBar(parent)
 {
     setFixedHeight(_TITLEBAR_HEIGHT);
     setObjectName(_TITLEBAR_OBJECT_NAME);
@@ -52,12 +52,12 @@ FramelessWidget::DefaultTitleBar::DefaultTitleBar(QWidget *parent) : AbstractTit
     setTitleBarBGColor(_DEFAULT_TITLEBAR_BGCOLOR);
 }
 
-void FramelessWidget::DefaultTitleBar::setTitleBarHeight(int height)
+void FW::DefaultTitleBar::setTitleBarHeight(int height)
 {
     setFixedHeight(height);
 }
 
-void FramelessWidget::DefaultTitleBar::setTitleBarBGColor(QRgb rgba)
+void FW::DefaultTitleBar::setTitleBarBGColor(QRgb rgba)
 {
     QString bgc = QString("\n#") + _TITLEBAR_OBJECT_NAME +
     "{background-color:rgba("
@@ -76,17 +76,17 @@ void FramelessWidget::DefaultTitleBar::setTitleBarBGColor(QRgb rgba)
     }
 }
 
-void FramelessWidget::DefaultTitleBar::setWindowTitle(const QString &title)
+void FW::DefaultTitleBar::setWindowTitle(const QString &title)
 {
     _title->setText(title);
 }
 
-void FramelessWidget::DefaultTitleBar::setWindowIcon(const QIcon &icon)
+void FW::DefaultTitleBar::setWindowIcon(const QIcon &icon)
 {
     _icon->setPixmap(icon.pixmap(_WINDOW_ICON_SIZE));
 }
 
-void FramelessWidget::DefaultTitleBar::setWindowTitleAlignCenter(bool centreAlign)
+void FW::DefaultTitleBar::setWindowTitleAlignCenter(bool centreAlign)
 {
     if (centreAlign && !_titleCentreAlign)
     {
@@ -101,7 +101,7 @@ void FramelessWidget::DefaultTitleBar::setWindowTitleAlignCenter(bool centreAlig
     _titleCentreAlign = centreAlign;
 }
 
-void FramelessWidget::DefaultTitleBar::setButtonType(FramelessWidget::WindowButtonType windowButtonType)
+void FW::DefaultTitleBar::setButtonType(FW::WindowButtonType windowButtonType)
 {
     if (_windowButtonType == windowButtonType)
     {
@@ -186,7 +186,7 @@ void FramelessWidget::DefaultTitleBar::setButtonType(FramelessWidget::WindowButt
     _windowButtonType = windowButtonType;
 }
 
-void FramelessWidget::DefaultTitleBar::resizeEvent(QResizeEvent *event)
+void FW::DefaultTitleBar::resizeEvent(QResizeEvent *event)
 {
     //根据大小变化修改最大化按钮icon
     if (_windowButtonType == WindowButtonType::MinimizeMaximizeButton ||
@@ -206,7 +206,7 @@ void FramelessWidget::DefaultTitleBar::resizeEvent(QResizeEvent *event)
 }
 
 QPushButton *
-FramelessWidget::DefaultTitleBar::createWindowButton(const QString &objName, const QFont &font, const QChar &fntIndex)
+FW::DefaultTitleBar::createWindowButton(const QString &objName, const QFont &font, const QChar &fntIndex)
 {
     QPushButton* button = new QPushButton(this);
     button->setObjectName(objName);

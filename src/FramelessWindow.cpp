@@ -9,7 +9,7 @@
 #include "DefaultTitleBar.h"
 #include "FramelessWindow.h"
 
-FramelessWidget::FramelessWindow::FramelessWindow(QWidget *parent) : FramelessWidget(parent)
+FW::FramelessWindow::FramelessWindow(QWidget *parent) : FramelessWidget(parent)
 {
     //主区域
     _mainArea = new QWidget(this);
@@ -40,10 +40,9 @@ FramelessWidget::FramelessWindow::FramelessWindow(QWidget *parent) : FramelessWi
     mainLyt->addWidget(_centreWidget,1,0,Qt::AlignmentFlag::AlignBottom);
 
     initConnectionWithTitleBar(_titleBar);
-    resize(300,300);
 }
 
-void FramelessWidget::FramelessWindow::initConnectionWithTitleBar(AbstractTitleBar *titleBar)
+void FW::FramelessWindow::initConnectionWithTitleBar(AbstractTitleBar *titleBar)
 {
     connect(this,&FramelessWindow::setTitleBarHeight,_titleBar,&AbstractTitleBar::setTitleBarHeight);
     connect(this,&FramelessWindow::setTitleBarBGColor,_titleBar,&AbstractTitleBar::setTitleBarBGColor);
@@ -56,7 +55,7 @@ void FramelessWidget::FramelessWindow::initConnectionWithTitleBar(AbstractTitleB
     connect(_titleBar,&AbstractTitleBar::onCloseButtonClicked,this,&FramelessWindow::onCloseButtonClick);
 }
 
-void FramelessWidget::FramelessWindow::destroyConnectionWithTitleBar(AbstractTitleBar *titleBar)
+void FW::FramelessWindow::destroyConnectionWithTitleBar(AbstractTitleBar *titleBar)
 {
     disconnect(this,&FramelessWindow::setTitleBarHeight,_titleBar,&AbstractTitleBar::setTitleBarHeight);
     disconnect(this,&FramelessWindow::setTitleBarBGColor,_titleBar,&AbstractTitleBar::setTitleBarBGColor);
@@ -69,7 +68,7 @@ void FramelessWidget::FramelessWindow::destroyConnectionWithTitleBar(AbstractTit
     disconnect(_titleBar,&AbstractTitleBar::onCloseButtonClicked,this,&FramelessWindow::onCloseButtonClick);
 }
 
-void FramelessWidget::FramelessWindow::setTitleBar(AbstractTitleBar *titleBar)
+void FW::FramelessWindow::setTitleBar(AbstractTitleBar *titleBar)
 {
     QGridLayout* lyt = dynamic_cast<QGridLayout*>(_mainArea->layout());
     if (_titleBar != nullptr)
@@ -85,7 +84,7 @@ void FramelessWidget::FramelessWindow::setTitleBar(AbstractTitleBar *titleBar)
     lyt->addWidget(_titleBar,0,0,Qt::AlignmentFlag::AlignTop);
 }
 
-void FramelessWidget::FramelessWindow::setCentreWidget(QWidget *centreWidget)
+void FW::FramelessWindow::setCentreWidget(QWidget *centreWidget)
 {
     QGridLayout* lyt = dynamic_cast<QGridLayout*>(_mainArea->layout());
     if (_centreWidget != nullptr)
@@ -99,17 +98,17 @@ void FramelessWidget::FramelessWindow::setCentreWidget(QWidget *centreWidget)
     lyt->addWidget(_centreWidget,1,0,Qt::AlignmentFlag::AlignBottom);
 }
 
-QWidget *FramelessWidget::FramelessWindow::centreWidget() const
+QWidget *FW::FramelessWindow::centreWidget() const
 {
     return _centreWidget;
 }
 
-FramelessWidget::AbstractTitleBar *FramelessWidget::FramelessWindow::titleBar() const
+FW::AbstractTitleBar* FW::FramelessWindow::titleBar() const
 {
     return _titleBar;
 }
 
-void FramelessWidget::FramelessWindow::onMinimizeButtonClick()
+void FW::FramelessWindow::onMinimizeButtonClick()
 {
     if (windowState() != Qt::WindowState::WindowMinimized)
     {
@@ -117,7 +116,7 @@ void FramelessWidget::FramelessWindow::onMinimizeButtonClick()
     }
 }
 
-void FramelessWidget::FramelessWindow::onMaximizeButtonClick()
+void FW::FramelessWindow::onMaximizeButtonClick()
 {
     if (resizable())
     {
@@ -132,7 +131,7 @@ void FramelessWidget::FramelessWindow::onMaximizeButtonClick()
     }
 }
 
-void FramelessWidget::FramelessWindow::onCloseButtonClick()
+void FW::FramelessWindow::onCloseButtonClick()
 {
     close();
 }

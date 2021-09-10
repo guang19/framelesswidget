@@ -9,7 +9,7 @@
 #include <QMutex>
 #include <QMap>
 
-namespace FramelessWidget
+namespace FW
 {
     class UIHelper
     {

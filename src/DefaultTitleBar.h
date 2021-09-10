@@ -10,7 +10,7 @@
 
 #include "AbstractTitleBar.h"
 
-namespace FramelessWidget
+namespace FW
 {
 #define _TITLEBAR_OBJECT_NAME "TitleBar"
 #define _TITLEBAR_HEIGHT 32

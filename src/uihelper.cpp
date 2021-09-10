@@ -6,10 +6,10 @@
 #include <QFontDatabase>
 #include "uihelper.h"
 
-FramelessWidget::UIHelper* FramelessWidget::UIHelper::_UIHelper = nullptr;
-QMutex FramelessWidget::UIHelper::_mtx;
+FW::UIHelper* FW::UIHelper::_UIHelper = nullptr;
+QMutex FW::UIHelper::_mtx;
 
-FramelessWidget::UIHelper* FramelessWidget::UIHelper::instance()
+FW::UIHelper* FW::UIHelper::instance()
 {
     if (_UIHelper == nullptr)
     {
@@ -22,7 +22,7 @@ FramelessWidget::UIHelper* FramelessWidget::UIHelper::instance()
     return _UIHelper;
 }
 
-void FramelessWidget::UIHelper::setStyleSheet(QWidget* w , const QString& qssFile)
+void FW::UIHelper::setStyleSheet(QWidget* w , const QString& qssFile)
 {
     QFile f(qssFile);
     f.open(QFile::OpenModeFlag::ReadOnly);
@@ -31,7 +31,7 @@ void FramelessWidget::UIHelper::setStyleSheet(QWidget* w , const QString& qssFil
 }
 
 //获取icon font图标
-QFont FramelessWidget::UIHelper::getIconFont(const QString& iconfont)
+QFont FW::UIHelper::getIconFont(const QString& iconfont)
 {
     if (_fontMap.contains(iconfont))
     {

@@ -8,7 +8,7 @@
 #include "FramelessWidget.h"
 #include "AbstractTitleBar.h"
 
-namespace FramelessWidget
+namespace FW
 {
 #define _MAINAREA_OBJECT_NAME "MainArea"
     class FramelessWindow : public FramelessWidget
